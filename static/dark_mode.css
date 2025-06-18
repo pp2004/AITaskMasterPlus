@@ -1,0 +1,198 @@
+/* Dark Mode Styles for AI TaskMaster */
+
+/* Override Streamlit's default dark mode */
+.stApp[data-theme="dark"] {
+    background-color: #1E1E1E !important;
+    color: #FFFFFF !important;
+}
+
+/* Sidebar dark mode */
+.stSidebar[data-theme="dark"] {
+    background-color: #2D2D2D !important;
+}
+
+.stSidebar[data-theme="dark"] .stMarkdown {
+    color: #FFFFFF !important;
+}
+
+/* Header dark mode - this is the key fix */
+[data-testid="stHeader"][data-theme="dark"] {
+    background-color: #1E1E1E !important;
+    border-bottom: 1px solid #333333 !important;
+}
+
+.stToolbar[data-theme="dark"] {
+    background-color: #1E1E1E !important;
+    color: #FFFFFF !important;
+}
+
+/* Main content area */
+.main[data-theme="dark"] .block-container {
+    background-color: #1E1E1E !important;
+    color: #FFFFFF !important;
+}
+
+/* Form elements */
+.stTextInput[data-theme="dark"] input {
+    background-color: #2D2D2D !important;
+    color: #FFFFFF !important;
+    border: 1px solid #444444 !important;
+}
+
+.stTextArea[data-theme="dark"] textarea {
+    background-color: #2D2D2D !important;
+    color: #FFFFFF !important;
+    border: 1px solid #444444 !important;
+}
+
+.stSelectbox[data-theme="dark"] select {
+    background-color: #2D2D2D !important;
+    color: #FFFFFF !important;
+    border: 1px solid #444444 !important;
+}
+
+/* Buttons */
+.stButton[data-theme="dark"] button {
+    background-color: #FF6B6B !important;
+    color: #FFFFFF !important;
+    border: none !important;
+}
+
+.stButton[data-theme="dark"] button:hover {
+    background-color: #FF5252 !important;
+}
+
+/* Dataframes and tables */
+.stDataFrame[data-theme="dark"] {
+    background-color: #2D2D2D !important;
+    color: #FFFFFF !important;
+}
+
+/* Metrics */
+.stMetric[data-theme="dark"] {
+    background-color: #2D2D2D !important;
+    color: #FFFFFF !important;
+    border: 1px solid #444444 !important;
+    border-radius: 8px !important;
+    padding: 10px !important;
+}
+
+/* Expanders */
+.stExpander[data-theme="dark"] {
+    background-color: #2D2D2D !important;
+    border: 1px solid #444444 !important;
+}
+
+/* Code blocks */
+.stCodeBlock[data-theme="dark"] {
+    background-color: #1A1A1A !important;
+    border: 1px solid #444444 !important;
+}
+
+/* Tabs */
+.stTabs[data-theme="dark"] {
+    background-color: #2D2D2D !important;
+}
+
+.stTabs[data-theme="dark"] button {
+    background-color: #2D2D2D !important;
+    color: #FFFFFF !important;
+    border-bottom: 2px solid transparent !important;
+}
+
+.stTabs[data-theme="dark"] button[aria-selected="true"] {
+    border-bottom: 2px solid #FF6B6B !important;
+    color: #FF6B6B !important;
+}
+
+/* Spinner */
+.stSpinner[data-theme="dark"] {
+    color: #FF6B6B !important;
+}
+
+/* Success/Error messages */
+.stSuccess[data-theme="dark"] {
+    background-color: #1B4D3E !important;
+    color: #4CAF50 !important;
+    border: 1px solid #4CAF50 !important;
+}
+
+.stError[data-theme="dark"] {
+    background-color: #4D1B1B !important;
+    color: #F44336 !important;
+    border: 1px solid #F44336 !important;
+}
+
+.stWarning[data-theme="dark"] {
+    background-color: #4D3D1B !important;
+    color: #FF9800 !important;
+    border: 1px solid #FF9800 !important;
+}
+
+.stInfo[data-theme="dark"] {
+    background-color: #1B2D4D !important;
+    color: #2196F3 !important;
+    border: 1px solid #2196F3 !important;
+}
+
+/* Radio buttons */
+.stRadio[data-theme="dark"] label {
+    color: #FFFFFF !important;
+}
+
+/* Checkboxes */
+.stCheckbox[data-theme="dark"] label {
+    color: #FFFFFF !important;
+}
+
+/* File uploader */
+.stFileUploader[data-theme="dark"] {
+    background-color: #2D2D2D !important;
+    border: 2px dashed #444444 !important;
+    color: #FFFFFF !important;
+}
+
+/* Navigation menu */
+.stSelectbox[data-theme="dark"] > div > div {
+    background-color: #2D2D2D !important;
+    color: #FFFFFF !important;
+}
+
+/* Scrollbar for dark mode */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #2D2D2D;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444444;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555555;
+}
+
+/* Additional header fixes */
+.stApp > header[data-theme="dark"] {
+    background-color: #1E1E1E !important;
+}
+
+.stApp > header[data-theme="dark"] [data-testid="stToolbar"] {
+    background-color: #1E1E1E !important;
+}
+
+/* Make sure the top header bar is dark */
+.main-header[data-theme="dark"],
+.main-header[data-theme="dark"] > div {
+    background-color: #1E1E1E !important;
+}
+
+/* Override any remaining light header elements */
+div[data-testid="stHeader"] > div {
+    background-color: inherit !important;
+}

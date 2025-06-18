@@ -1,0 +1,324 @@
+I want you to create a project using streamlit, react, typescript, fastapi and sqllite in the background with Azure AI for ai purposes. I want to create three tabs that can be accessed from the sidebar:-
+TAB 1) WEEK 2/ WEEK 3
+Add an event planner with the following components:-
+GET endpoint for your Events and Event list
+POST endpoint to create an event 
+DELETE endpoint to delete an event (See if you can link this to your frontend)
+I also want an UPDATE event option
+Add animation: Delay or loading animation. Try to utilize animation libraries to beautify the site. 
+Add form validation ( can't expect users to always input right things! )
+Instantiate a SQLLite instance on your backend to update actual tables instead of just a JSON.
+Have the endpoints needed to support CRUD operations in your frontend
+WITHIN THE WEEK 2/ WEEK 3, I want the following:- 
+1. Event List: a component to provide an overview over all events (See example)
+
+UBS CDIO GTP 2022 | Event Portal 
+There are two views:- 
+List (view)
+Following are the table attributes 
+Date
+Status
+MSVP by
+Title
+Hoit
+Create Event: a form to create new events (See example)
+UBS CDIO GTP 2022 Event Portal
+Create Event (view)
+### Sample data for Hosts
+​
+{
+  "hosts": [
+    {
+      "gpn": "43746091",
+      "name": "MUHAMMAD AZLAN BIN HASSAN"
+    },
+    {
+      "gpn": "43746115",
+      "name": "CHEW SHI DA, ERIC"
+    }
+  ]
+}
+### Sample data for events
+​
+{
+  "events": [
+    {
+      "id": 1,
+      "eventDate": "11/07/22",
+      "status": 2 /*0 = open, 1 = fully booked, 2 = completed */,
+      "rsvpBy": "01/07/22",
+      "eventTitle": "TFIP Lunch",
+      "eventHost": "Xinying Tan",
+      "eventLocation": "9 Penang Road, Cafeteria",
+      "pax": "5"
+    }
+  ]
+}
+### Sample data to create an event
+​
+{
+  "eventDate": "11/07/22",
+  "status": 2,
+  "rsvpBy": "01/07/22",
+  "eventTitle": "TFIP Lunch",
+  "eventHost": "Xinying Tan",
+  "eventLocation": "9 Penang Road, Cafeteria",
+  "pax": "5"
+}
+
+Feel free to use the sample JSON in goal (3) to help you structure your endpoints and take it from there. 
+Hint: It is advisable to use pydantic to declare the shape of your data to make it easier!
+
+BACKEND folder requirements.txt:- 
+aiohappyeyeballs==2.4.6
+aiohttp==3.11.13
+aiosignal==1.3.2
+annotated-types==0.7.0
+anyio==4.8.0
+attrs==25.1.0
+azure-core==1.32.0
+azure-identity==1.20.0
+black==25.1.0
+certifi==2025.1.31
+cffi==1.17.1
+charset-normalizer==3.4.1
+click==8.1.8
+colorama==0.4.6
+cryptography==44.0.2
+Deprecated==1.2.18
+distro==1.9.0
+dnspython==2.7.0
+email_validator==2.2.0
+exceptiongroup==1.2.2
+fastapi==0.115.8
+fastapi-cli==0.0.7
+frozenlist==1.5.0
+greenlet==3.1.1
+h11==0.14.0
+h2==4.2.0
+hpack==4.1.0
+httpcore==1.0.7
+httptools==0.6.4
+httpx==0.28.1
+hyperframe==6.1.0
+idna==3.10
+importlib_metadata==8.5.0
+Jinja2==3.1.5
+jiter==0.9.0
+markdown-it-py==3.0.0
+MarkupSafe==3.0.2
+mdurl==0.1.2
+microsoft-kiota-abstractions==1.9.2
+microsoft-kiota-authentication-azure==1.9.2
+microsoft-kiota-http==1.9.2
+microsoft-kiota-serialization-form==1.9.2
+microsoft-kiota-serialization-json==1.9.2
+microsoft-kiota-serialization-multipart==1.9.2
+microsoft-kiota-serialization-text==1.9.2
+msal==1.31.1
+msal-extensions==1.2.0
+msgraph-core==1.3.2
+msgraph-sdk==1.22.0
+multidict==6.1.0
+mypy-extensions==1.0.0
+openai==1.66.2
+opentelemetry-api==1.30.0
+opentelemetry-sdk==1.30.0
+opentelemetry-semantic-conventions==0.51b0
+packaging==24.2
+pathspec==0.12.1
+pillow==11.1.0
+platformdirs==4.3.6
+portalocker==2.10.1
+propcache==0.3.0
+pycparser==2.22
+pydantic==2.10.6
+pydantic_core==2.27.2
+Pygments==2.19.1
+PyJWT==2.10.1
+PyMuPDF==1.25.3
+PyPDF2==3.0.1
+pytesseract==0.3.13
+python-dotenv==1.0.1
+python-multipart==0.0.20
+pywin32==308
+PyYAML==6.0.2
+requests==2.32.3
+rich==13.9.4
+rich-toolkit==0.13.2
+setuptools==75.8.0
+shellingham==1.5.4
+six==1.17.0
+sniffio==1.3.1
+SQLAlchemy==2.0.37
+starlette==0.45.3
+std-uritemplate==2.0.3
+tomli==2.2.1
+tqdm==4.67.1
+typer==0.15.1
+typing_extensions==4.12.2
+urllib3==2.3.0
+uvicorn==0.34.0
+watchfiles==1.0.4
+websockets==14.2
+wheel==0.45.1
+wrapt==1.17.2
+yarl==1.18.3
+zipp==3.21.0
+
+Following is the Frontend folder package.json:-
+{
+  "name": "tiso-ai-boot-camp",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite --host",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "prettier": "prettier --check --ignore-path .prettierignore \"./**/*.{ts,tsx,js,jsx,scss}\"",
+    "prettier:fix": "yarn prettier --check=false --write"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0",
+    "vite": "^5.2.9",
+    "vite-plugin-env-compatible": "^1.1.1",
+    "vite-plugin-svgr": "^3.2.0",
+    "vitest": "^0.34.4"
+  },
+"devDependencies": {
+    "@babel/core": "^7.26.7",
+    "@babel/plugin-syntax-flow": "^7.26.0",
+    "@babel/plugin-transform-react-jsx": "^7.25.9",
+    "@types/node": "^22.10.5",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "prettier": "^3.4.2",
+    "typescript": "^5.0.2",
+    "vite": "^5.2.9"
+  }
+}
+
+
+TAB 2) WEEK 4 (you have to build the following subchallenges)
+Challenge 1: Product Ideation & Roadmap Development
+Objective:
+EXPLAIN HOW TO WRITE A GOOD PROMPT USING THE FOLLOWING EXAMPLE Simulate a Product Manager's workflow using AI for ideation, prioritization, and planning.
+Tasks:
+Product Concept
+Generate a product idea (e.g., "AI-Powered Fraud Detection for E-Commerce")
+Define: Target audience, USP, 3 core features
+Format: 1-paragraph summary + bulleted list
+Feature Prioritization
+Brainstorm 5 additional features using CoT prompting
+Prioritize using MoSCoW method (Must-have/Should-have/Could-have/Won’t-have)
+Output: Prioritized table with reasoning
+Roadmap Creation
+Create 4-quarter roadmap with milestones
+Format:
+text
+| Q1 2024 | Q2 2024 | Q3 2024 | Q4 2024 |
+|---------|---------|---------|---------|
+| [Feature A] | [Feature B] | [Feature C] | [Feature D] | 
+
+
+User Story
+Write GitLab-style user story for one feature:
+text
+As a [user], I want [action] so that [benefit].
+Acceptance Criteria: [List]  
+
+Challenge 2: Azure OpenAI Integration
+Objective:
+Programmatically interact with LLMs using Python and Azure OpenAI SDK.
+Tasks:
+Environment Setup
+Create .env file with:
+text
+AZURE_OPENAI_KEY=your_key
+AZURE_OPENAI_ENDPOINT=your_endpoint
+
+
+API Script
+Modify system role to "Cybersecurity Analyst"
+Query: "How does {DNS/encryption/2FA} work?"
+Code Requirements:
+python
+messages = [
+    {"role": "system", "content": "You are a cybersecurity expert..."},
+    {"role": "user", "content": "Explain DNS security risks"}
+]
+
+
+Parameter Tuning
+Experiment with:
+Temperature (0.2 vs 0.8)
+Max tokens (200 vs 500)
+Deliverable: Compare outputs in table format
+
+Challenge 3: Advanced Prompt Engineering
+Objective:
+Master prompting techniques and token optimization.
+Exercises:
+Zero-Shot vs Few-Shot
+Ask: "Explain quantum computing" (zero-shot)
+Add 2 examples, then ask again (few-shot)
+Chain-of-Thought (CoT)
+Force step-by-step reasoning:
+text
+User: "A store has 12 apples. Sold 5, bought 8. How many left?"  
+Assistant: Let's think step by step...
+
+
+Token Efficiency
+Rewrite:
+Original: "In light of recent developments, could you elucidate..."
+Optimized: "Explain recent AI security trends"
+Use tiktoken to show token savings
+
+Challenge 4: RAG & Security Implementation
+Objective:
+Build a secure RAG pipeline with Azure Blob Storage.
+Tasks:
+Local RAG Setup
+Create documents/ folder with 3 text files
+Code snippet for loading/embedding docs:
+python
+from langchain.document_loaders import DirectoryLoader
+loader = DirectoryLoader('./documents/', glob="**/*.txt")
+
+
+Azure Integration
+Research & propose Azure services for scaling:
+Azure AI Search
+Cognitive Services (Entity Recognition)
+Security Mitigations
+Address 4 vulnerabilities:
+Vulnerability
+Mitigation Strategy
+Training Data Poisoning
+Data validation pipelines
+Model Extraction
+API rate limiting + Obfuscation
+Data Leakage
+Output filtering (regex patterns)
+Supply Chain Attacks
+Signed model artifacts
+
+
+
+MAKE SURE THAT THE PROJECT USES STREAMLIT and AI wherever used,  uses the following:- 
+client = AzureOpenA!(
+api key=os.geteny'AZURE_OPENALKEY"),
+api version=os.geteny('AZURE_OPENALVERSION'),
+azure endpoint=os.geteny('AZURE.
+_OPENAL ENDPOINT)
